@@ -1,0 +1,117 @@
+{
+  "nav": {
+    "about": "Sobre",
+    "stack": "Stack",
+    "work": "Trabalho",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "status": "DISPONÍVEL P/ PROJETOS · 2026",
+    "location": "LISBOA, PT",
+    "line1": "Fábio",
+    "line2": "Dias",
+    "tagline": "Sou um <strong>Web Developer</strong> que constrói interfaces rápidas, acessíveis e memoráveis — pixel a pixel, linha a linha.",
+    "scroll": "SCROLL"
+  },
+  "about": {
+    "label": "01 / SOBRE MIM",
+    "title": "Código com",
+    "titleAccent": "intenção.",
+    "p1": "Há <mark>3+ anos</mark> que transformo ideias em produtos web reais. Trabalho desde o backend (PHP, APIs REST) até ao frontend (React, Tailwind), com foco em performance e detalhe.",
+    "p2": "Acredito que um bom site não é só bonito — é rápido, acessível e útil. Cada decisão de design tem de servir o utilizador.",
+    "p3": "Estou disponível agora para novas oportunidades em remoto. Se precisas de alguém que entrega, fala comigo.",
+    "cv": "↓ DESCARREGAR CV",
+    "facts": "FACTOS RÁPIDOS",
+    "fact1": "Localização",
+    "fact2": "Experiência",
+    "fact3": "Projetos",
+    "fact4": "Foco",
+    "fact5": "Estado",
+    "available": "Disponível",
+    "factValues": {
+      "location": "Oliveira do Hospital, PT",
+      "experience": "3+ anos",
+      "projects": "20+",
+      "focus": "Full-Stack Web"
+    }
+  },
+  "stack": {
+    "label": "02 / STACK TÉCNICO",
+    "title": "Ferramentas",
+    "titleAccent": "do ofício."
+  },
+  "work": {
+    "label": "03 / PROJETOS SELECIONADOS",
+    "title": "Trabalho",
+    "titleAccent": "recente.",
+    "view": "Ver projeto"
+  },
+  "experience": {
+    "label": "04 / EXPERIÊNCIA & FORMAÇÃO",
+    "title": "Caminho",
+    "titleAccent": "percorrido.",
+    "now": "AGORA"
+  },
+  "contact": {
+    "label": "05 / VAMOS FALAR",
+    "title": "Pronto para",
+    "titleAccent": "construir?",
+    "direct": "CONTACTO DIRETO",
+    "form": {
+      "name": "NOME",
+      "email": "EMAIL",
+      "subject": "ASSUNTO",
+      "message": "MENSAGEM",
+      "send": "ENVIAR MENSAGEM",
+      "sending": "A ENVIAR…",
+      "success": "✓ Mensagem enviada. Respondo em 24h.",
+      "error": "Algo correu mal. Tenta de novo ou envia email direto."
+    }
+  },
+  "footer": {
+    "built": "CONSTRUÍDO COM CAFÉ E CSS",
+    "top": "TOPO",
+    "copy": "© 2026 FÁBIO DIAS"
+  },
+  "project": {
+    "back": "VOLTAR",
+    "qf": {
+      "role": "FUNÇÃO",
+      "duration": "DURAÇÃO",
+      "type": "TIPO",
+      "repo": "REPO"
+    },
+    "about": {
+      "label": "01 / SOBRE O PROJETO",
+      "t1": "A",
+      "t2": "ideia.",
+      "left": "CONTEXTO & MOTIVAÇÃO"
+    },
+    "gallery": {
+      "label": "02 / GALERIA",
+      "t1": "Ver em",
+      "t2": "detalhe."
+    },
+    "build": {
+      "label": "03 / O QUE CONSTRUÍ",
+      "t1": "Como",
+      "t2": "o fiz.",
+      "left": "DECISÕES TÉCNICAS"
+    },
+    "stack": {
+      "label": "04 / STACK",
+      "t1": "Tecnologias",
+      "t2": "usadas.",
+      "cta": "VER NO GITHUB"
+    },
+    "highlights": {
+      "label": "05 / DESTAQUES",
+      "t1": "Pontos",
+      "t2": "fortes."
+    },
+    "nav": {
+      "prev": "ANTERIOR",
+      "next": "PRÓXIMO"
+    }
+  }
+}

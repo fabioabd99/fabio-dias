@@ -1,0 +1,117 @@
+{
+  "nav": {
+    "about": "About",
+    "stack": "Stack",
+    "work": "Work",
+    "contact": "Contact"
+  },
+  "hero": {
+    "status": "AVAILABLE FOR PROJECTS · 2026",
+    "location": "LISBON, PT",
+    "line1": "Fábio",
+    "line2": "Dias",
+    "tagline": "I'm a <strong>Web Developer</strong> building fast, accessible, memorable interfaces — pixel by pixel, line by line.",
+    "scroll": "SCROLL"
+  },
+  "about": {
+    "label": "01 / ABOUT",
+    "title": "Code with",
+    "titleAccent": "intent.",
+    "p1": "For <mark>3+ years</mark> I have turned ideas into real web products. From backend (PHP, REST APIs) to frontend (React, Tailwind), with focus on performance and detail.",
+    "p2": "A good website isn't just pretty — it's fast, accessible and useful. Every design decision must serve the user.",
+    "p3": "I'm available now for remote opportunities. If you need someone who delivers, let's talk.",
+    "cv": "↓ DOWNLOAD CV",
+    "facts": "QUICK FACTS",
+    "fact1": "Location",
+    "fact2": "Experience",
+    "fact3": "Projects",
+    "fact4": "Focus",
+    "fact5": "Status",
+    "available": "Available",
+    "factValues": {
+      "location": "Oliveira do Hospital, PT",
+      "experience": "3+ years",
+      "projects": "20+",
+      "focus": "Full-Stack Web"
+    }
+  },
+  "stack": {
+    "label": "02 / TECH STACK",
+    "title": "Tools of the",
+    "titleAccent": "trade."
+  },
+  "work": {
+    "label": "03 / SELECTED PROJECTS",
+    "title": "Recent",
+    "titleAccent": "work.",
+    "view": "View project"
+  },
+  "experience": {
+    "label": "04 / EXPERIENCE & EDUCATION",
+    "title": "Path",
+    "titleAccent": "walked.",
+    "now": "NOW"
+  },
+  "contact": {
+    "label": "05 / LET'S TALK",
+    "title": "Ready to",
+    "titleAccent": "build?",
+    "direct": "DIRECT CONTACT",
+    "form": {
+      "name": "NAME",
+      "email": "EMAIL",
+      "subject": "SUBJECT",
+      "message": "MESSAGE",
+      "send": "SEND MESSAGE",
+      "sending": "SENDING…",
+      "success": "✓ Message sent. I reply within 24h.",
+      "error": "Something went wrong. Try again or email me directly."
+    }
+  },
+  "footer": {
+    "built": "BUILT WITH COFFEE & CSS",
+    "top": "TOP",
+    "copy": "© 2026 FÁBIO DIAS"
+  },
+  "project": {
+    "back": "BACK",
+    "qf": {
+      "role": "ROLE",
+      "duration": "DURATION",
+      "type": "TYPE",
+      "repo": "REPO"
+    },
+    "about": {
+      "label": "01 / ABOUT THE PROJECT",
+      "t1": "The",
+      "t2": "idea.",
+      "left": "CONTEXT & MOTIVATION"
+    },
+    "gallery": {
+      "label": "02 / GALLERY",
+      "t1": "See in",
+      "t2": "detail."
+    },
+    "build": {
+      "label": "03 / HOW I BUILT IT",
+      "t1": "How",
+      "t2": "I built it.",
+      "left": "TECH DECISIONS"
+    },
+    "stack": {
+      "label": "04 / STACK",
+      "t1": "Technologies",
+      "t2": "used.",
+      "cta": "SEE ON GITHUB"
+    },
+    "highlights": {
+      "label": "05 / HIGHLIGHTS",
+      "t1": "Strong",
+      "t2": "points."
+    },
+    "nav": {
+      "prev": "PREVIOUS",
+      "next": "NEXT"
+    }
+  }
+}
