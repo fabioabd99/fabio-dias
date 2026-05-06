@@ -56,12 +56,14 @@ export default function ProjectGallery({ dict }: Props) {
 // ─── Shot placeholder ─────────────────────────────────────────────────────────
 
 function Shot({
+  cls,
   label,
   span,
   ratio,
   accent,
   light,
 }: {
+  cls?: string;
   label: string;
   span: number;
   ratio: string;
