@@ -37,7 +37,9 @@ export default function ContactForm({ dict }: Props) {
     e.preventDefault();
     if (status === "sending") return;
 
-    const payload = Object.fromEntries(new FormData(e.currentTarget).entries());
+    // Captura referência ao form ANTES do await — e.currentTarget é null depois.
+    const form = e.currentTarget;
+    const payload = Object.fromEntries(new FormData(form).entries());
 
     setStatus("sending");
     try {
@@ -48,7 +50,7 @@ export default function ContactForm({ dict }: Props) {
       });
       if (!res.ok) throw new Error();
       setStatus("success");
-      e.currentTarget.reset();
+      form.reset();
     } catch {
       setStatus("error");
     }
