@@ -25,7 +25,7 @@ export default function ProjectNav({ lang, backLabel }: Props) {
 
       <Link
         href={`/${lang}#work`}
-        className="inline-flex items-center gap-2 border-[1.5px] border-current px-3.5 py-2 rounded-full text-[13px] uppercase tracking-[0.08em] transition-all duration-200 hover:bg-current hover:text-ink"
+        className="inline-flex items-center gap-2 border-[1.5px] border-current px-3.5 py-2 rounded-full text-[13px] uppercase tracking-[0.08em] transition-colors duration-200 hover:bg-white hover:text-black max-md:text-[12px] max-md:px-3 max-md:py-1.5"
         style={{ fontFamily: "var(--font-jetbrains)" }}
       >
         ← {backLabel}

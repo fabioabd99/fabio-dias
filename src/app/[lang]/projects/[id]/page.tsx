@@ -27,7 +27,7 @@ import ProjectNav from "./_components/ProjectNav";
 import ProjectHero from "./_components/ProjectHero";
 import ProjectAbout from "./_components/ProjectAbout";
 import ProjectGallery from "./_components/ProjectGallery";
-import ProjectBand from "./_components/ProjectBand";
+// import ProjectBand from "./_components/ProjectBand";
 import ProjectBuild from "./_components/ProjectBuild";
 import ProjectStack from "./_components/ProjectStack";
 import ProjectResults from "./_components/ProjectResults";
@@ -67,8 +67,13 @@ export default async function ProjectPage({
       <main>
         <ProjectHero project={project} content={c} lang={lang} dict={d} />
         <ProjectAbout content={c} dict={d.about} />
-        <ProjectGallery dict={d.gallery} />
-        <ProjectBand />
+        <ProjectGallery
+          dict={d.gallery}
+          gallery={project.gallery}
+          deviceDesktop={project.deviceDesktop}
+          deviceMobile={project.deviceMobile}
+        />
+        {/* <ProjectBand src={project.band} /> */}
         <ProjectBuild content={c} dict={d.build} />
         <ProjectStack project={project} dict={d.stack} />
         <ProjectResults project={project} dict={d.highlights} />

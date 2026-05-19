@@ -1,4 +1,4 @@
-import type { Locale } from "@/lib/i18n/dictionaries";
+import type { Locale } from '@/lib/i18n/dictionaries';
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 
@@ -16,6 +16,11 @@ interface ProjectContent {
   features: Array<{ name: string; desc: string }>;
 }
 
+export interface GalleryShot {
+  src?: string; // caminho a partir de /public — ex: "/projects/leafy/home.png". Vazio = placeholder.
+  label: string; // texto sobreposto no placeholder; também serve de alt text
+}
+
 export interface ProjectData {
   id: string;
   slug: string;
@@ -29,6 +34,21 @@ export interface ProjectData {
   results: Array<{ big: string; label: string }>;
   live: string;
   repo: string;
+  // 7 slots fixos no mosaico — ordem importa. Ver ProjectGallery.tsx para span/ratio.
+  gallery?: [
+    GalleryShot,
+    GalleryShot,
+    GalleryShot,
+    GalleryShot,
+    GalleryShot,
+    GalleryShot,
+    GalleryShot,
+  ];
+  // Device mockups por baixo da galeria. Vazio = placeholder.
+  deviceDesktop?: string; // ratio 16:10 — screenshot desktop
+  deviceMobile?: string; // ratio 9:16 — screenshot mobile
+  // Banda full-bleed entre secções (21:9). Vazio = placeholder.
+  band?: string;
   pt: ProjectContent;
   en: ProjectContent;
 }
@@ -37,292 +57,244 @@ export interface ProjectData {
 
 const projects: ProjectData[] = [
   {
-    id: "1",
-    slug: "lorem-commerce",
-    num: "01",
-    cat: "E-Commerce",
-    year: "2024",
-    title: "Lorem",
-    titleAccent: "Commerce",
-    chips: ["PHP", "React", "Tailwind", "MySQL", "Stripe", "Redis", "WebSockets"],
+    id: '1',
+    slug: 'leafy',
+    num: '01',
+    cat: 'Rede Social · IA',
+    year: '2026',
+    title: 'Lea',
+    titleAccent: 'fy',
+    chips: [
+      'Next.js 16',
+      'React Native',
+      'Node.js',
+      'PostgreSQL',
+      'pgvector',
+      'Redis',
+      'OpenAI',
+      'Tailwind',
+    ],
     qf: {
-      role: "Full-Stack",
-      pt: { duration: "6 meses", type: "Pessoal" },
-      en: { duration: "6 months", type: "Personal" },
+      role: 'Founder · Full-Stack',
+      pt: { duration: 'Em curso', type: 'Startup · Seed' },
+      en: { duration: 'Ongoing', type: 'Startup · Seed' },
     },
     results: [
-      { big: "MVP",   label: "IN 6 MONTHS" },
-      { big: "12+",   label: "KEY FEATURES" },
-      { big: "4.9/5", label: "LIGHTHOUSE" },
+      { big: '150M+', label: 'READERS TAM' },
+      { big: '€18.2B', label: 'MARKET SIZE' },
+      { big: 'AI', label: 'NATIVE' },
     ],
-    live: "#",
-    repo: "github.com/fabio/lorem",
+    live: '#',
+    // repo: "github.com/fabioabd99/leafy", // repositório privado por agora
+    repo: 'Privado',
+    // Coloca os ficheiros em public/projects/leafy/ e preenche os src abaixo.
+    gallery: [
+      { src: '/projects/leafy/home.png', label: 'HOME · FEED' },
+      { src: '/projects/leafy/book.png', label: 'BOOK PAGE' },
+      { src: '/projects/leafy/recs.png', label: 'RECOMMENDATIONS' },
+      { src: '/projects/leafy/library.png', label: 'LIBRARY · SHELVES' },
+      { src: '/projects/leafy/club.png', label: 'READING CLUB' },
+      { src: '/projects/leafy/wrapped.png', label: 'WRAPPED' },
+      { src: '/projects/leafy/profile.png', label: 'PROFILE' },
+    ],
+    deviceDesktop: '/projects/leafy/desktop.png', // ex: '/projects/leafy/desktop.png'
+    deviceMobile: '/projects/leafy/mobile.png', // ex: '/projects/leafy/mobile.png'
+    band: '/projects/leafy/band.png', // ex: '/projects/leafy/band.png' (21:9 wide)
     pt: {
-      sub: "Plataforma de e-commerce <strong>multi-vendedor</strong> com gestão de stocks em tempo real, checkout Stripe e dashboard analítico.",
-      desc: "Plataforma e-commerce headless com checkout repensado de raiz para maximizar conversão.",
+      sub: 'A biblioteca <strong>que te conhece</strong>. Rede social para leitores construída de raiz em torno da IA — o que o Goodreads devia ter sido em 2026.',
+      desc: 'Rede social para leitores com IA nativa — biblioteca pessoal, feed personalizado, clubes de leitura e recomendação semântica.',
       about: [
-        "Quis perceber até onde conseguia levar uma <mark>plataforma multi-vendedor</mark> sozinho — frontend, backend, pagamentos e dashboard num único produto coerente.",
-        "A ideia: imaginar um mercado online onde várias lojas operam em simultâneo, com stocks sincronizados e analytics em tempo real, sem comprometer simplicidade.",
+        'O Goodreads tem 19 anos e estagnou desde a aquisição pela Amazon em 2013. Quis construir aquilo que <mark>devia ter sido nesta década</mark>: uma rede social literária com IA infundida em cada decisão.',
+        'A Leafy combina três produtos que hoje vivem em apps diferentes — gestão de biblioteca, rede social literária e motor de recomendação por embeddings — numa só experiência cuidada ao detalhe.',
       ],
       build: [
-        "Backend em <mark>PHP puro com arquitetura MVC própria</mark>, frontend em React + Tailwind. Integrei Stripe Connect para distribuir pagamentos automaticamente entre lojas.",
-        "Stock atualizado por webhooks, dashboard com WebSockets para updates ao vivo, e relatórios PDF gerados on-demand.",
+        'Stack: <mark>Next.js 16 + React Native</mark> (Expo) para web e mobile, Node.js + Fastify no backend, PostgreSQL 17 com pgvector para embeddings semânticos, Redis para cache e filas.',
+        'Pipeline de IA com cinco subsistemas: embeddings sentence-transformers, recomendação híbrida (content-based + collaborative filtering), feed ranking, LLM conversacional (GPT-4o) e OCR via Google Vision.',
       ],
       features: [
-        { name: "Multi-tenant", desc: "Cada loja com o seu próprio domínio, branding e regras." },
-        { name: "Stripe Connect", desc: "Split automático de pagamentos entre vendedores." },
-        { name: "Stock Live", desc: "Sincronização real-time via WebSockets e webhooks." },
-        { name: "Analytics", desc: "Dashboard com KPIs, funil de conversão e cohorts." },
+        {
+          name: 'IA Nativa',
+          desc: 'Embeddings + LLM em cada interação — recomendação, escrita assistida, descoberta semântica.',
+        },
+        {
+          name: 'Estantes 3D',
+          desc: 'Biblioteca com lombadas reais renderizadas — vista prateleira ou grelha.',
+        },
+        {
+          name: 'Clubes de Leitura',
+          desc: 'Chat por capítulo com proteção anti-spoilers, votação do próximo livro, leitura conjunta.',
+        },
+        {
+          name: 'Wrapped',
+          desc: 'Relatório anual estilo Spotify Wrapped — driver viral principal, partilhável em Stories.',
+        },
+        {
+          name: 'OCR de Citações',
+          desc: 'Foto → texto extraído pelo Google Vision API, classificado semanticamente.',
+        },
+        {
+          name: 'Velas',
+          desc: 'Sistema de avaliação proprietário com cinco estados — substitui as estrelas genéricas.',
+        },
       ],
     },
     en: {
-      sub: "Multi-vendor <strong>e-commerce</strong> platform with real-time stock management, Stripe checkout and analytics dashboard.",
-      desc: "Headless e-commerce platform with a checkout rebuilt from scratch to maximize conversion.",
+      sub: 'The library <strong>that knows you</strong>. A social network for readers built around AI from day one — what Goodreads should have been in 2026.',
+      desc: 'AI-native social network for readers — personal library, personalised feed, reading clubs and semantic recommendation.',
       about: [
-        "I wanted to see how far I could take a <mark>multi-vendor platform</mark> on my own — frontend, backend, payments and dashboard in a single coherent product.",
-        "The idea: imagine an online marketplace where several stores operate simultaneously, with synced stocks and real-time analytics, without sacrificing simplicity.",
+        'Goodreads is 19 years old and has stagnated since Amazon acquired it in 2013. I wanted to build what it <mark>should have been this decade</mark>: a literary social network with AI infused into every decision.',
+        'Leafy combines three products that today live in different apps — library management, literary social network and embedding-based recommendation engine — into a single carefully crafted experience.',
       ],
       build: [
-        "Backend in <mark>vanilla PHP with custom MVC architecture</mark>, frontend in React + Tailwind. Integrated Stripe Connect to auto-split payments between stores.",
-        "Stock updated via webhooks, dashboard with WebSockets for live updates, and on-demand PDF reports.",
+        'Stack: <mark>Next.js 16 + React Native</mark> (Expo) for web and mobile, Node.js + Fastify on the backend, PostgreSQL 17 with pgvector for semantic embeddings, Redis for cache and queues.',
+        'AI pipeline with five subsystems: sentence-transformer embeddings, hybrid recommendation (content-based + collaborative filtering), feed ranking, conversational LLM (GPT-4o) and OCR via Google Vision.',
       ],
       features: [
-        { name: "Multi-tenant", desc: "Each store with its own domain, branding and rules." },
-        { name: "Stripe Connect", desc: "Automatic payment split between sellers." },
-        { name: "Stock Live", desc: "Real-time sync via WebSockets and webhooks." },
-        { name: "Analytics", desc: "Dashboard with KPIs, conversion funnel and cohorts." },
+        {
+          name: 'AI-Native',
+          desc: 'Embeddings + LLM in every interaction — recommendation, writing assistance, semantic discovery.',
+        },
+        {
+          name: '3D Shelves',
+          desc: 'Library with real rendered spines — shelf view or grid view.',
+        },
+        {
+          name: 'Reading Clubs',
+          desc: 'Per-chapter chat with anti-spoiler protection, next-book voting, group reading.',
+        },
+        {
+          name: 'Wrapped',
+          desc: 'Annual Spotify Wrapped-style report — the main viral driver, shareable to Stories.',
+        },
+        {
+          name: 'Quote OCR',
+          desc: 'Photo → text extracted via Google Vision API, semantically classified.',
+        },
+        {
+          name: 'Candles',
+          desc: 'Proprietary rating system with five states — replaces generic stars.',
+        },
       ],
     },
   },
   {
-    id: "2",
-    slug: "pixel-dashboard",
-    num: "02",
-    cat: "Dashboard",
-    year: "2024",
-    title: "Pixel",
-    titleAccent: "Dashboard",
-    chips: ["React", "TypeScript", "Tailwind", "PHP", "MySQL", "REST"],
+    id: '2',
+    slug: 'venci',
+    num: '02',
+    cat: 'SaaS B2B · Fintech',
+    year: '2026',
+    title: 'Ven',
+    titleAccent: 'ci',
+    chips: [
+      'Next.js 16',
+      'TypeScript',
+      'PostgreSQL',
+      'Stripe Connect',
+      'Drizzle',
+      'Supabase',
+      'Tailwind',
+      'Inngest',
+    ],
     qf: {
-      role: "Frontend",
-      pt: { duration: "4 meses", type: "Pessoal" },
-      en: { duration: "4 months", type: "Personal" },
+      role: 'Founder · Full-Stack',
+      pt: { duration: 'Em curso', type: 'Startup · Pre-Seed' },
+      en: { duration: 'Ongoing', type: 'Startup · Pre-Seed' },
     },
     results: [
-      { big: "<200ms", label: "P95 LATENCY" },
-      { big: "−90%",   label: "BUNDLE SIZE" },
-      { big: "60fps",  label: "CONSISTENT" },
+      { big: '€2.1B', label: 'SAM IBERIA' },
+      { big: '340k', label: 'PROS ELEGÍVEIS' },
+      { big: '5min', label: 'TIME TO REVENUE' },
     ],
-    live: "#",
-    repo: "github.com/fabio/pixel",
+    live: '#',
+    // repo: "github.com/fabioabd99/venci", // repositório privado por agora
+    repo: 'Privado',
+    // Coloca os ficheiros em public/projects/venci/ e preenche os src abaixo.
+    gallery: [
+      { src: '/projects/venci/landing.png', label: 'LANDING' },
+      { src: '/projects/venci/subs.png', label: 'PLAN BUILDER' },
+      { src: '/projects/venci/check.png', label: 'CHECKOUT' },
+      { src: '/projects/venci/dash.png', label: 'DASHBOARD' },
+      { src: '/projects/venci/aa.png', label: 'SUBSCRIBERS' },
+      { src: '/projects/venci/dd.png', label: 'INVOICE · AT' },
+      { src: '/projects/venci/ii.png', label: 'SUBSCRIBER HUB' },
+    ],
+    deviceDesktop: '/projects/venci/landing.png', // ex: '/projects/venci/desktop.png'
+    deviceMobile: '/projects/venci/mobile.png', // ex: '/projects/venci/mobile.png'
+    band: '/projects/venci/landing.png', // ex: '/projects/venci/band.png' (21:9 wide)
     pt: {
-      sub: "Dashboard <strong>analítico em tempo real</strong> — KPIs, cohorts, funis e alertas configuráveis.",
-      desc: "Dashboard analítico para equipas de produto com métricas em tempo real via WebSockets.",
+      sub: 'O sistema operativo da <strong>economia de subscrições</strong> para profissionais portugueses — fatura certificada AT, Stripe Connect e branding próprio em 5 minutos.',
+      desc: 'Plataforma all-in-one para profissionais portugueses lançarem subscrições recorrentes com fatura certificada AT integrada.',
       about: [
-        "Queria desenhar um dashboard que fosse <mark>rápido sem depender de bibliotecas pesadas</mark>. As ferramentas off-the-shelf são lentas e genéricas — quis fazer melhor.",
-        "O foco foi sempre experiência: dados visíveis em &lt;200ms, gráficos custom, e atalhos para power users.",
+        'Vender subscrições em Portugal enquanto profissional é uma corrida de obstáculos: Stripe não emite fatura certificada, software vertical é caro, e a alternativa manual consome horas e falha 15-25% das cobranças.',
+        "A Venci é a <mark>camada intermédia que faltava</mark> entre Stripe e os sistemas certificados portugueses (Moloni, InvoiceXpress) — desenhada para um dentista de 52 anos lançar um plano de membership em 5 minutos, sem ver as palavras 'API' ou 'webhook'.",
       ],
       build: [
-        "Frontend em <mark>React + TypeScript</mark> com queries optimistas, virtualização de listas grandes e gráficos custom em SVG (sem libs pesadas).",
-        "Backend em PHP a servir dados via API REST com cache agressivo. Sistema de alertas via webhook + email.",
+        'Stack pragmática: <mark>Next.js 16 + Drizzle ORM</mark> sobre PostgreSQL 16 (Supabase) com RLS multi-tenant desde o dia 1, Stripe Connect Express para KYC e pagamentos, integração OAuth com Moloni/InvoiceXpress/Vendus para fatura certificada AT.',
+        'Webhooks idempotentes com event deduplication, jobs assíncronos em Inngest, dunning automation com retentativas inteligentes. Compliance é arquitetura, não checklist — RGPD, SCA e fatura certificada são axiomas do design.',
       ],
       features: [
-        { name: "Real-time", desc: "Updates por polling, diff de estado < 200ms." },
-        { name: "SVG Charts", desc: "Gráficos custom sem libs — 90% mais leves." },
-        { name: "Alerts", desc: "Threshold-based com integração webhook/email." },
-        { name: "Cohorts", desc: "Análise de retenção e LTV por segmento." },
+        {
+          name: 'Plan Builder',
+          desc: '6 perguntas guiadas → plano em produção em <4 minutos com template por vertical.',
+        },
+        {
+          name: 'Fatura AT',
+          desc: 'Estratégia BYOI — OAuth com Moloni/IX/Vendus emite fatura certificada após cada cobrança.',
+        },
+        {
+          name: 'Stripe Connect',
+          desc: 'KYC delegado, application fee 0.7-1% sobre GMV, SEPA + cartão + MBway.',
+        },
+        {
+          name: 'Subscriber Hub',
+          desc: 'Portal self-service do utilizador final — gerir cartão, faturas, cancelamento.',
+        },
+        {
+          name: 'Benchmarks',
+          desc: 'Dashboard com churn/ARPU comparados contra mediana da vertical — efeito de rede de dados.',
+        },
+        {
+          name: 'Multi-tenant',
+          desc: 'Row-Level Security Postgres nativa em todas as tabelas — defense-in-depth desde o dia 1.',
+        },
       ],
     },
     en: {
-      sub: "Real-time <strong>analytics dashboard</strong> — KPIs, cohorts, funnels and configurable alerts.",
-      desc: "Analytics dashboard for product teams with real-time metrics over WebSockets.",
+      sub: 'The operating system of the <strong>subscription economy</strong> for Portuguese professionals — certified AT invoicing, Stripe Connect and custom branding in 5 minutes.',
+      desc: 'All-in-one platform for Portuguese professionals to launch recurring subscriptions with integrated certified AT invoicing.',
       about: [
-        "I wanted to design a dashboard that was <mark>fast without depending on heavy libraries</mark>. Off-the-shelf tools are slow and generic — I wanted to do better.",
-        "The focus was always experience: data visible in &lt;200ms, custom charts, and shortcuts for power users.",
+        "Selling subscriptions in Portugal as a professional is an obstacle course: Stripe doesn't issue certified invoices, vertical software is expensive, and the manual alternative eats hours and fails 15-25% of charges.",
+        "Venci is the <mark>missing middle layer</mark> between Stripe and the Portuguese certified invoicing systems (Moloni, InvoiceXpress) — designed for a 52-year-old dentist to launch a membership plan in 5 minutes, never seeing the words 'API' or 'webhook'.",
       ],
       build: [
-        "Frontend in <mark>React + TypeScript</mark> with optimistic queries, large-list virtualization and custom SVG charts (no heavy libs).",
-        "PHP backend serving data via REST API with aggressive caching. Alert system via webhook + email.",
+        'Pragmatic stack: <mark>Next.js 16 + Drizzle ORM</mark> over PostgreSQL 16 (Supabase) with RLS multi-tenant from day 1, Stripe Connect Express for KYC and payments, OAuth integration with Moloni/InvoiceXpress/Vendus for certified AT invoicing.',
+        'Idempotent webhooks with event deduplication, async jobs on Inngest, dunning automation with smart retries. Compliance is architecture, not checklist — GDPR, SCA and certified invoicing are design axioms.',
       ],
       features: [
-        { name: "Real-time", desc: "Polling updates, state diff < 200ms." },
-        { name: "SVG Charts", desc: "Custom charts no libs — 90% lighter." },
-        { name: "Alerts", desc: "Threshold-based with webhook/email integration." },
-        { name: "Cohorts", desc: "Retention and LTV analysis by segment." },
-      ],
-    },
-  },
-  {
-    id: "3",
-    slug: "book-flow",
-    num: "03",
-    cat: "CMS",
-    year: "2023",
-    title: "Book",
-    titleAccent: "Flow",
-    chips: ["PHP", "Alpine.js", "Tailwind", "MySQL"],
-    qf: {
-      role: "Full-Stack",
-      pt: { duration: "5 meses", type: "Pessoal" },
-      en: { duration: "5 months", type: "Personal" },
-    },
-    results: [
-      { big: "2000+",  label: "TITLES SUPPORTED" },
-      { big: "<100ms", label: "SEARCH SPEED" },
-      { big: "5x",     label: "FASTER FLOW" },
-    ],
-    live: "#",
-    repo: "github.com/fabio/bookflow",
-    pt: {
-      sub: "<strong>CMS dedicado a editoras</strong> — gestão de catálogos, autores e direitos digitais.",
-      desc: "Site institucional para editora independente com CMS custom para gestão de catálogo e autores.",
-      about: [
-        "Editoras gerem catálogos enormes em folhas de cálculo. Quis explorar como seria um <mark>CMS feito para o problema deles</mark>, com workflow de aprovação e histórico completo.",
-        "O objetivo: substituir o caos de Excel + email por uma ferramenta única, auditável, e rápida.",
-      ],
-      build: [
-        "CMS construído em <mark>PHP + Alpine.js + Tailwind</mark>. Admin panel custom com workflows multi-passo para aprovações de capa e contratos.",
-        "Versionamento automático de cada campo, log de auditoria, e exportação em formatos da indústria (ONIX, PDF).",
-      ],
-      features: [
-        { name: "Workflow", desc: "Aprovações multi-passo com role-based." },
-        { name: "Audit", desc: "Quem alterou o quê, quando, com diff visual." },
-        { name: "ONIX Export", desc: "Formato standard da indústria livreira." },
-        { name: "Search", desc: "Pesquisa fuzzy em 2000+ títulos < 100ms." },
-      ],
-    },
-    en: {
-      sub: "<strong>CMS for publishers</strong> — catalog, author and digital rights management.",
-      desc: "Institutional site for an independent publisher with a custom CMS for catalog and author management.",
-      about: [
-        "Publishers manage huge catalogs in spreadsheets. I wanted to explore what a <mark>CMS built for their problem</mark> would look like, with approval workflow and full history.",
-        "The goal: replace the Excel + email chaos with a single, auditable, fast tool.",
-      ],
-      build: [
-        "CMS built in <mark>PHP + Alpine.js + Tailwind</mark>. Custom admin panel with multi-step workflows for cover and contract approvals.",
-        "Automatic field-level versioning, audit log, and export in industry formats (ONIX, PDF).",
-      ],
-      features: [
-        { name: "Workflow", desc: "Multi-step role-based approvals." },
-        { name: "Audit", desc: "Who changed what, when, with visual diff." },
-        { name: "ONIX Export", desc: "Industry-standard publishing format." },
-        { name: "Search", desc: "Fuzzy search across 2000+ titles < 100ms." },
-      ],
-    },
-  },
-  {
-    id: "4",
-    slug: "task-nova",
-    num: "04",
-    cat: "Productivity",
-    year: "2025",
-    title: "Task",
-    titleAccent: "Nova",
-    chips: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind", "Yjs"],
-    qf: {
-      role: "Full-Stack",
-      pt: { duration: "8 meses", type: "Pessoal" },
-      en: { duration: "8 months", type: "Personal" },
-    },
-    results: [
-      { big: "0ms",   label: "PERCEIVED LATENCY" },
-      { big: "100%",  label: "OFFLINE READY" },
-      { big: "60fps", label: "CONSISTENT" },
-    ],
-    live: "#",
-    repo: "github.com/fabio/tasknova",
-    pt: {
-      sub: "App de <strong>produtividade colaborativa</strong> com sync offline-first, atalhos de teclado a sério, e zero spinners.",
-      desc: "Gestor de tarefas e projetos focado em simplicidade — o oposto do Jira para equipas pequenas.",
-      about: [
-        "Apps de tarefas modernas são lentas e dependem de internet. Eu queria algo <mark>local-first</mark> que funcionasse perfeitamente offline.",
-        "Sync entre dispositivos sem conflitos, e atalhos de teclado para tudo — sem precisar tocar no rato.",
-      ],
-      build: [
-        "<mark>Next.js + IndexedDB</mark> para storage local, sync por CRDT (Yjs) com servidor PostgreSQL.",
-        "UI 60fps consistente, command palette tipo Linear, e atalhos vim-style para power users.",
-      ],
-      features: [
-        { name: "Offline-first", desc: "Funciona sem internet, sync quando volta." },
-        { name: "CRDT Sync", desc: "Merge automático sem conflitos entre devices." },
-        { name: "Cmd-K", desc: "Command palette para tudo, fuzzy search." },
-        { name: "Vim Mode", desc: "Atalhos j/k/x/gg para os power users." },
-      ],
-    },
-    en: {
-      sub: "<strong>Collaborative productivity</strong> app with offline-first sync, serious keyboard shortcuts, and zero spinners.",
-      desc: "Task and project manager focused on simplicity — the opposite of Jira for small teams.",
-      about: [
-        "Modern todo apps are slow and depend on the internet. I wanted something <mark>local-first</mark> that worked perfectly offline.",
-        "Cross-device sync without conflicts, and keyboard shortcuts for everything — without ever touching the mouse.",
-      ],
-      build: [
-        "<mark>Next.js + IndexedDB</mark> for local storage, CRDT-based sync (Yjs) with a PostgreSQL server.",
-        "60fps consistent UI, Linear-style command palette, and vim-style shortcuts for power users.",
-      ],
-      features: [
-        { name: "Offline-first", desc: "Works offline, syncs when back online." },
-        { name: "CRDT Sync", desc: "Automatic conflict-free merging across devices." },
-        { name: "Cmd-K", desc: "Command palette for everything, fuzzy search." },
-        { name: "Vim Mode", desc: "j/k/x/gg shortcuts for power users." },
-      ],
-    },
-  },
-  {
-    id: "5",
-    slug: "green-api",
-    num: "05",
-    cat: "API",
-    year: "2023",
-    title: "Green",
-    titleAccent: "API",
-    chips: ["PHP", "MySQL", "REST", "Docker", "OpenAPI"],
-    qf: {
-      role: "Backend",
-      pt: { duration: "3 meses", type: "Open source" },
-      en: { duration: "3 months", type: "Open source" },
-    },
-    results: [
-      { big: "50+",   label: "DATA SOURCES" },
-      { big: "10k/d", label: "FREE REQUESTS" },
-      { big: "99.9%", label: "UPTIME" },
-    ],
-    live: "#",
-    repo: "github.com/fabio/greenapi",
-    pt: {
-      sub: "API pública de <strong>dados ambientais</strong> — qualidade do ar, consumo energético e CO₂. Open source e gratuita.",
-      desc: "Backend robusto para app mobile fintech, com foco em segurança e tempos de resposta abaixo dos 100ms.",
-      about: [
-        "Dados ambientais existem espalhados por <mark>50+ portais</mark>, em formatos diferentes. Quis construir uma API REST simples, documentada, com tier gratuito generoso.",
-        "O projeto começou como um exercício pessoal e cresceu para algo que outros developers podem usar nos seus projetos.",
-      ],
-      build: [
-        "<mark>PHP + MySQL</mark> com workers Cron a fazer scraping/parsing diário e a normalizar para um schema único.",
-        "Documentação OpenAPI, dashboard de status público, rate limiting justo e tier gratuito (10k req/dia).",
-      ],
-      features: [
-        { name: "OpenAPI", desc: "Documentação interativa, SDK auto-gerado." },
-        { name: "Daily Sync", desc: "Workers cron normalizam 50+ fontes/dia." },
-        { name: "Free Tier", desc: "10k requests/dia sem auth, ideal hackathons." },
-        { name: "Open Source", desc: "Código MIT no GitHub, contribuições aceites." },
-      ],
-    },
-    en: {
-      sub: "Public API of <strong>environmental data</strong> — air quality, energy consumption and CO₂. Open source and free.",
-      desc: "Robust backend for a fintech mobile app, focused on security and sub-100ms response times.",
-      about: [
-        "Environmental data exists scattered across <mark>50+ portals</mark>, in different formats. I wanted to build a simple, documented REST API with a generous free tier.",
-        "The project started as a personal exercise and grew into something other developers can use in their projects.",
-      ],
-      build: [
-        "<mark>PHP + MySQL</mark>, with Cron workers running daily scraping/parsing and normalising to a unified schema.",
-        "OpenAPI documentation, public status dashboard, fair rate limiting and free tier (10k req/day).",
-      ],
-      features: [
-        { name: "OpenAPI", desc: "Interactive docs, auto-generated SDK." },
-        { name: "Daily Sync", desc: "Cron workers normalise 50+ sources/day." },
-        { name: "Free Tier", desc: "10k requests/day no auth, hackathon-friendly." },
-        { name: "Open Source", desc: "MIT code on GitHub, contributions welcome." },
+        {
+          name: 'Plan Builder',
+          desc: '6 guided questions → plan live in <4 minutes with per-vertical template.',
+        },
+        {
+          name: 'AT Invoice',
+          desc: 'BYOI strategy — OAuth with Moloni/IX/Vendus issues certified invoice on every charge.',
+        },
+        {
+          name: 'Stripe Connect',
+          desc: 'Delegated KYC, 0.7-1% application fee on GMV, SEPA + card + MBway.',
+        },
+        {
+          name: 'Subscriber Hub',
+          desc: 'End-user self-service portal — manage card, invoices, cancellation.',
+        },
+        {
+          name: 'Benchmarks',
+          desc: 'Dashboard with churn/ARPU compared to vertical median — data network effect.',
+        },
+        {
+          name: 'Multi-tenant',
+          desc: 'Native Postgres Row-Level Security on every table — defense-in-depth from day 1.',
+        },
       ],
     },
   },
@@ -338,7 +310,10 @@ export function getProject(slug: string): ProjectData | undefined {
   return projects.find((p) => p.slug === slug);
 }
 
-export function getProjectContent(project: ProjectData, lang: Locale): ProjectContent {
+export function getProjectContent(
+  project: ProjectData,
+  lang: Locale
+): ProjectContent {
   return project[lang];
 }
 

@@ -42,16 +42,18 @@ export default function ProjectStack({ project, dict }: Props) {
         ))}
       </div>
 
-      {/* CTA para o repo */}
-      <a
-        href={`https://${project.repo}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-3 mt-8 bg-accent text-ink px-6 py-4 uppercase tracking-wider text-[16px] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_var(--color-ink)]"
-        style={{ fontFamily: "var(--font-archivo)" }}
-      >
-        ↗ {dict.cta}
-      </a>
+      {/* CTA para o repo — escondido se for privado */}
+      {project.repo.startsWith("github.com/") && (
+        <a
+          href={`https://${project.repo}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-3 mt-8 bg-accent text-ink px-6 py-4 uppercase tracking-wider text-[16px] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_var(--color-ink)]"
+          style={{ fontFamily: "var(--font-archivo)" }}
+        >
+          ↗ {dict.cta}
+        </a>
+      )}
     </section>
   );
 }

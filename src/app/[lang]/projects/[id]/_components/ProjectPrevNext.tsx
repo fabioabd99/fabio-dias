@@ -23,12 +23,12 @@ export default function ProjectPrevNext({ prev, next, lang, dict }: Props) {
 
   return (
     <nav
-      className="grid grid-cols-2 border-b-[1.5px] border-ink"
+      className="grid grid-cols-2 border-b-[1.5px] border-ink max-md:grid-cols-1"
       aria-label="Navegação entre projetos"
     >
       <Link
         href={prevHref}
-        className="flex flex-col gap-2 px-8 py-15 border-r-[1.5px] border-ink transition-colors duration-250 hover:bg-ink hover:text-bg max-md:px-5 max-md:py-8"
+        className="flex flex-col gap-2 px-8 py-15 border-r-[1.5px] border-ink transition-colors duration-250 hover:bg-ink hover:text-bg max-md:px-5 max-md:py-8 max-md:border-r-0 max-md:border-b-[1.5px]"
       >
         <span
           className="text-[12px] uppercase tracking-[0.08em] opacity-60"

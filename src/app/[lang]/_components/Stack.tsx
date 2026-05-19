@@ -13,6 +13,8 @@ const techs = [
   { name: "HTML5", cat: "Web" },
   { name: "CSS3", cat: "Web" },
   { name: "Figma", cat: "Design" },
+  { name: "WordPress", cat: "CMS" },
+  { name: "Drupal", cat: "CMS" },
 ];
 
 interface StackDict {

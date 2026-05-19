@@ -32,10 +32,10 @@ export default function ProjectHero({ project, content, lang, dict }: Props) {
 
       {/* Título grande: Lorem.Commerce */}
       <h1
-        className="uppercase my-[50px] max-md:my-8"
+        className="uppercase my-[50px] max-md:my-8 wrap-anywhere max-w-full"
         style={{
           fontFamily: "var(--font-archivo)",
-          fontSize: "clamp(56px, 14vw, 200px)",
+          fontSize: "clamp(40px, 11vw, 180px)",
           lineHeight: 0.85,
           letterSpacing: "-0.04em",
         }}
@@ -72,7 +72,7 @@ export default function ProjectHero({ project, content, lang, dict }: Props) {
               {k}
             </div>
             <div
-              className="text-[18px] leading-[1.1]"
+              className="text-[18px] leading-[1.1] wrap-anywhere max-md:text-[16px]"
               style={{ fontFamily: "var(--font-archivo)" }}
             >
               {v}

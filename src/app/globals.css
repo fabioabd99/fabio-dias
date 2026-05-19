@@ -17,7 +17,7 @@
 /* ─── Base styles ──────────────────────────────────────────────────────────── */
 
 @layer base {
-  html {
+  html, body {
     @apply bg-bg text-ink antialiased scroll-smooth overflow-x-hidden;
     /* Usa directamente a variável CSS injectada pelo Next.js no <html> */
     font-family: var(--font-grotesk), system-ui, sans-serif;
