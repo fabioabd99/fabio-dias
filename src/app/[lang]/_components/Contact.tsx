@@ -82,11 +82,12 @@ export default function Contact({ dict }: Props) {
             {[
               { label: "GitHub", href: site.github, display: `github.com/fabiodias` },
               { label: "LinkedIn", href: site.linkedin, display: `linkedin.com/in/fabio-dias` },
-              { label: "Telefone", href: `tel:${site.phone.replace(/\s+/g, "")}`, display: site.phone },
             ].map((l) => (
               <li key={l.label}>
                 <a
                   href={l.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 opacity-70 transition-all duration-200 hover:opacity-100 hover:text-accent"
                   style={{ fontFamily: "var(--font-jetbrains)", fontSize: "14px" }}
                 >
