@@ -1,12 +1,25 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+// Força runtime Node.js (nodemailer não corre em edge) e dá mais margem ao Vercel
+// para terminar o handshake SMTP do Gmail — antes ficava a 10s e fazia 504.
+export const runtime = "nodejs";
+export const maxDuration = 30;
+
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.GMAIL_USER,
     pass: process.env.GMAIL_APP_PASSWORD,
   },
+  // Reutiliza conexões entre invocações na mesma instância — evita handshake repetido.
+  pool: true,
+  maxConnections: 1,
+  connectionTimeout: 10_000,
+  greetingTimeout: 10_000,
+  socketTimeout: 20_000,
 });
 
 function escapeHtml(str: string): string {
