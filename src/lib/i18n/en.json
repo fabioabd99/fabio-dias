@@ -69,7 +69,8 @@
       "send": "SEND MESSAGE",
       "sending": "SENDING…",
       "success": "✓ Message sent. I reply within 24h.",
-      "error": "Something went wrong. Try again or email me directly."
+      "error": "Something went wrong. Try again or email me directly.",
+      "rateLimit": "You've sent a few messages already. Wait a few minutes or email me directly."
     }
   },
   "footer": {

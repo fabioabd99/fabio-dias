@@ -11,13 +11,14 @@ interface FormDict {
   sending: string;
   success: string;
   error: string;
+  rateLimit: string;
 }
 
 interface Props {
   dict: FormDict;
 }
 
-type Status = "idle" | "sending" | "success" | "error";
+type Status = "idle" | "sending" | "success" | "error" | "rate-limited";
 
 // Classe base dos inputs/textarea — copiada do CSS do design:
 // border-bottom 1.5px rgba(white, 0.3), sem border noutros lados,
@@ -30,7 +31,7 @@ export default function ContactForm({ dict }: Props) {
   const [status, setStatus] = useState<Status>("idle");
 
   function clearError() {
-    if (status === "error") setStatus("idle");
+    if (status === "error" || status === "rate-limited") setStatus("idle");
   }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -48,6 +49,12 @@ export default function ContactForm({ dict }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      // 429 tem mensagem própria: dizer "algo correu mal" a quem bateu no
+      // limite manda-o tentar outra vez, que é exatamente o oposto do útil.
+      if (res.status === 429) {
+        setStatus("rate-limited");
+        return;
+      }
       if (!res.ok) throw new Error();
       setStatus("success");
       form.reset();
@@ -59,16 +66,29 @@ export default function ContactForm({ dict }: Props) {
   return (
     <form onSubmit={handleSubmit} onChange={clearError} className="flex flex-col gap-5">
 
+      {/* Honeypot — invisível para pessoas, preenchido por bots que percorrem
+          o DOM. Fora da ordem de tabulação e escondido dos leitores de ecrã,
+          para não confundir quem navega por teclado. O servidor rejeita
+          silenciosamente qualquer submissão que o traga preenchido. */}
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute w-px h-px -left-full opacity-0 pointer-events-none"
+      />
+
       <Field id="cf-name" label={dict.name}>
-        <input id="cf-name" name="name" type="text" required className={fieldBase} />
+        <input id="cf-name" name="name" type="text" required maxLength={100} className={fieldBase} />
       </Field>
 
       <Field id="cf-email" label={dict.email}>
-        <input id="cf-email" name="email" type="email" required className={fieldBase} />
+        <input id="cf-email" name="email" type="email" required maxLength={150} className={fieldBase} />
       </Field>
 
       <Field id="cf-subject" label={dict.subject}>
-        <input id="cf-subject" name="subject" type="text" className={fieldBase} />
+        <input id="cf-subject" name="subject" type="text" maxLength={200} className={fieldBase} />
       </Field>
 
       <Field id="cf-message" label={dict.message}>
@@ -76,6 +96,7 @@ export default function ContactForm({ dict }: Props) {
           id="cf-message"
           name="message"
           required
+          maxLength={5000}
           rows={4}
           className={`${fieldBase} resize-y min-h-25`}
         />
@@ -103,9 +124,9 @@ export default function ContactForm({ dict }: Props) {
         </div>
       )}
 
-      {status === "error" && (
+      {(status === "error" || status === "rate-limited") && (
         <p role="alert" className="text-accent text-[13px]" style={{ fontFamily: "var(--font-jetbrains)" }}>
-          {dict.error}
+          {status === "rate-limited" ? dict.rateLimit : dict.error}
         </p>
       )}
     </form>

@@ -69,7 +69,8 @@
       "send": "ENVIAR MENSAGEM",
       "sending": "A ENVIAR…",
       "success": "✓ Mensagem enviada. Respondo em 24h.",
-      "error": "Algo correu mal. Tenta de novo ou envia email direto."
+      "error": "Algo correu mal. Tenta de novo ou envia email direto.",
+      "rateLimit": "Já enviaste algumas mensagens. Espera uns minutos ou envia email direto."
     }
   },
   "footer": {

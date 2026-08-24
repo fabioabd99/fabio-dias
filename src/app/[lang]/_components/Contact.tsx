@@ -15,6 +15,7 @@ interface ContactDict {
     sending: string;
     success: string;
     error: string;
+    rateLimit: string;
   };
 }
 

@@ -22,7 +22,14 @@ export function proxy(request: NextRequest) {
   // Redireciona para /{lang}{caminho-original}
   // Ex: / → /pt  |  /projects/1 → /pt/projects/1
   request.nextUrl.pathname = `/${lang}${pathname}`;
-  return NextResponse.redirect(request.nextUrl);
+  const response = NextResponse.redirect(request.nextUrl);
+
+  // O destino depende do cookie, portanto a resposta tem de o declarar. Sem
+  // isto, uma cache partilhada pode guardar o redirect de um visitante e servir
+  // o idioma errado ao seguinte. Na Vercel não acontece, mas assim a correção
+  // está no código e não depende do comportamento do alojamento.
+  response.headers.set("Vary", "Cookie");
+  return response;
 }
 
 export const config = {
