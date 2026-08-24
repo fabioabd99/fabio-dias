@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "Fábio Dias — Web Developer",
+    "description": "Full-stack Web Developer with 5+ years of experience in PHP, React and Next.js. I build fast, accessible interfaces. Available for remote projects."
+  },
   "nav": {
     "about": "About",
     "stack": "Stack",

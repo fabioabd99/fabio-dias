@@ -1,20 +1,9 @@
 import { notFound } from "next/navigation";
 import { hasLocale, getDictionary } from "@/lib/i18n/dictionaries";
-import type { Metadata } from "next";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ lang: string }>;
-}): Promise<Metadata> {
-  const { lang } = await params;
-  if (!hasLocale(lang)) return {};
-  const dict = await getDictionary(lang);
-  return {
-    title: "Fábio Dias — Web Developer",
-    description: dict.about.p1.replace(/<[^>]+>/g, ""),
-  };
-}
+// Sem generateMetadata: o título e a descrição da home são exatamente os do
+// layout. Repeti-los aqui só criava um segundo sítio para ficarem dessincronizados
+// — foi assim que a descrição encalhou nos "3+ anos".
 import Nav from "./_components/Nav";
 import Hero from "./_components/Hero";
 import About from "./_components/About";

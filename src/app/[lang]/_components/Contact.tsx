@@ -79,10 +79,13 @@ export default function Contact({ dict }: Props) {
 
           {/* Lista de links sociais */}
           <ul className="list-none flex flex-col gap-2.5">
+            {/* O texto visível é derivado do próprio href — antes estavam
+                escritos à mão e o do GitHub mostrava um utilizador que não era
+                o do link. Assim não podem voltar a divergir. */}
             {[
-              { label: "GitHub", href: site.github, display: `github.com/fabiodias` },
-              { label: "LinkedIn", href: site.linkedin, display: `linkedin.com/in/fabio-dias` },
-            ].map((l) => (
+              { label: "GitHub", href: site.github },
+              { label: "LinkedIn", href: site.linkedin },
+            ].map((l) => ({ ...l, display: l.href.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "") })).map((l) => (
               <li key={l.label}>
                 <a
                   href={l.href}

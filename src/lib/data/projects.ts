@@ -16,6 +16,11 @@ interface ProjectContent {
   features: Array<{ name: string; desc: string }>;
 }
 
+// Data da última alteração real ao conteúdo, em ISO (YYYY-MM-DD).
+// Vai para o <lastmod> do sitemap — atualiza quando mexeres no texto ou nas
+// capturas de um projeto, não a cada deploy.
+export const CONTENT_UPDATED = '2026-08-24';
+
 export interface GalleryShot {
   src?: string; // caminho a partir de /public — ex: "/projects/leafy/home.png". Vazio = placeholder.
   label: string; // texto sobreposto no placeholder; também serve de alt text

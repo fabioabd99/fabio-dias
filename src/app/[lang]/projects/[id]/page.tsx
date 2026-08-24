@@ -1,6 +1,13 @@
 import { notFound } from "next/navigation";
 import { hasLocale, getDictionary } from "@/lib/i18n/dictionaries";
-import { getAllProjects, getProject, getAdjacentProjects } from "@/lib/data/projects";
+import {
+  getAllProjects,
+  getProject,
+  getAdjacentProjects,
+  CONTENT_UPDATED,
+} from "@/lib/data/projects";
+import { SITE_URL, site } from "@/lib/data/site";
+import { projectSchema } from "@/lib/data/schema";
 import type { Metadata } from "next";
 
 export async function generateMetadata({
@@ -13,13 +20,33 @@ export async function generateMetadata({
   const project = getProject(slug);
   if (!project) return {};
   const c = project[lang];
-  const title = `${project.title} ${project.titleAccent}`;
+  // title e titleAccent são as duas metades do nome partido no hero ("Lea"+"fy")
+  const title = `${project.title}${project.titleAccent}`;
+  const path = `/projects/${slug}`;
+
   return {
     title,
     description: c.desc,
     openGraph: {
-      title: `${title} | Fábio Dias`,
+      type: "article",
+      title: `${title} | ${site.name}`,
       description: c.desc,
+      url: `${SITE_URL}/${lang}${path}`,
+      siteName: site.name,
+      locale: lang === "pt" ? "pt_PT" : "en_GB",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | ${site.name}`,
+      description: c.desc,
+    },
+    alternates: {
+      canonical: `${SITE_URL}/${lang}${path}`,
+      languages: {
+        pt: `${SITE_URL}/pt${path}`,
+        en: `${SITE_URL}/en${path}`,
+        "x-default": `${SITE_URL}/pt${path}`,
+      },
     },
   };
 }
@@ -61,6 +88,12 @@ export default async function ProjectPage({
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(projectSchema(project, lang, CONTENT_UPDATED)),
+        }}
+      />
       <ProjectNav lang={lang} backLabel={d.back} />
       <ProjectLangToggle lang={lang as "pt" | "en"} slug={slug} />
       <main>
