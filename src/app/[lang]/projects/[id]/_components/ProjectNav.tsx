@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n/dictionaries";
+import { useScrolled } from "@/lib/hooks/useScrolled";
 
 interface Props {
   lang: Locale;
@@ -7,12 +10,18 @@ interface Props {
 }
 
 // Nav simplificado da página de projeto: só logo + botão voltar em pill.
-// Mantém mix-blend-mode: difference igual ao nav da home.
+// Ver useScrolled para o porquê da troca para fundo sólido.
 export default function ProjectNav({ lang, backLabel }: Props) {
+  const scrolled = useScrolled();
+
   return (
+    // Só o fundo e a borda mudam com o scroll: o texto mantém sempre a mesma
+    // cor. A borda existe desde o início em transparente para poder animar
+    // junto com o fundo, em vez de aparecer de repente.
     <nav
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5 max-md:px-5"
-      style={{ mixBlendMode: "difference", color: "#fff" }}
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5 max-md:px-5 border-b-[1.5px] transition-colors duration-300 ${
+        scrolled ? "bg-bg border-ink" : "bg-transparent border-transparent"
+      }`}
     >
       <Link
         href={`/${lang}`}
@@ -25,7 +34,7 @@ export default function ProjectNav({ lang, backLabel }: Props) {
 
       <Link
         href={`/${lang}#work`}
-        className="inline-flex items-center gap-2 border-[1.5px] border-current px-3.5 py-2 rounded-full text-[13px] uppercase tracking-[0.08em] transition-colors duration-200 hover:bg-white hover:text-black max-md:text-[12px] max-md:px-3 max-md:py-1.5"
+        className="inline-flex items-center gap-2 border-[1.5px] border-current px-3.5 py-2 rounded-full text-[13px] uppercase tracking-[0.08em] transition-colors duration-200 hover:bg-ink hover:text-bg max-md:text-[12px] max-md:px-3 max-md:py-1.5"
         style={{ fontFamily: "var(--font-jetbrains)" }}
       >
         ← {backLabel}
