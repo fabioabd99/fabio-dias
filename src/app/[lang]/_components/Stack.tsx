@@ -1,20 +1,25 @@
+// Espelha a lista de competências do CV, pela mesma ordem
 const techs = [
-  { name: "PHP", cat: "Backend" },
   { name: "JavaScript", cat: "Language" },
   { name: "TypeScript", cat: "Language" },
   { name: "React", cat: "Frontend" },
   { name: "Next.js", cat: "Framework" },
-  { name: "Tailwind", cat: "Styling" },
-  { name: "MySQL", cat: "Database" },
-  { name: "PostgreSQL", cat: "Database" },
-  { name: "REST APIs", cat: "Backend" },
-  { name: "Git", cat: "Tooling" },
-  { name: "Docker", cat: "DevOps" },
   { name: "HTML5", cat: "Web" },
   { name: "CSS3", cat: "Web" },
-  { name: "Figma", cat: "Design" },
-  { name: "WordPress", cat: "CMS" },
+  { name: "Sass", cat: "Styling" },
+  { name: "Tailwind", cat: "Styling" },
+  { name: "Node.js", cat: "Backend" },
+  { name: "PHP", cat: "Backend" },
+  { name: "MySQL", cat: "Database" },
+  { name: "PostgreSQL", cat: "Database" },
   { name: "Drupal", cat: "CMS" },
+  { name: "WordPress", cat: "CMS" },
+  { name: "Git", cat: "Tooling" },
+  { name: "Docker", cat: "DevOps" },
+  { name: "Vercel", cat: "DevOps" },
+  { name: "npm", cat: "Tooling" },
+  { name: "Composer", cat: "Tooling" },
+  { name: "Figma", cat: "Design" },
 ];
 
 interface StackDict {
@@ -52,7 +57,9 @@ export default function Stack({ dict }: Props) {
       </InView>
 
       <InView delay={0.15}>
-      <div className="grid border-[1.5px] border-ink [grid-template-columns:repeat(auto-fill,minmax(180px,1fr))]">
+      {/* Só topo/esquerda: cada célula fecha-se à direita e em baixo, senão
+          as bordas duplicavam e a última fila incompleta deixava uma linha solta */}
+      <div className="grid border-t-[1.5px] border-l-[1.5px] border-ink grid-cols-[repeat(auto-fill,minmax(180px,1fr))]">
         {techs.map((tech, i) => (
           <div
             key={tech.name}
