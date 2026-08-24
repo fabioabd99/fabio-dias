@@ -8,5 +8,9 @@ export const site = {
   email: 'fabioabdias99@gmail.com',
   github: 'https://github.com/fabioabd99',
   linkedin: 'https://www.linkedin.com/in/fabio-dias-a72569217',
-  cv: '/cv.pdf',
+  // Um CV por idioma — indexado pelo Locale da URL
+  cv: {
+    pt: '/cv-pt.pdf',
+    en: '/cv-en.pdf',
+  },
 } as const;

@@ -41,7 +41,7 @@ export default async function HomePage({
       <main id="top">
         <Hero dict={dict.hero} />
         <Marquee />
-        <About dict={dict.about} />
+        <About dict={dict.about} lang={lang} />
         <Stack dict={dict.stack} />
         <ProjectsGrid dict={dict.work} lang={lang} />
         <Experience dict={dict.experience} lang={lang} />

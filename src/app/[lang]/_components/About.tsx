@@ -23,11 +23,14 @@ interface AboutDict {
 
 interface Props {
   dict: AboutDict;
+  lang: Locale;
 }
 
 import InView from "./InView";
+import { site } from "@/lib/data/site";
+import type { Locale } from "@/lib/i18n/dictionaries";
 
-export default function About({ dict }: Props) {
+export default function About({ dict, lang }: Props) {
   return (
     <section
       id="about"
@@ -55,8 +58,8 @@ export default function About({ dict }: Props) {
           <p className="mt-[18px]">{dict.p2}</p>
           <p className="mt-[18px]" dangerouslySetInnerHTML={{ __html: dict.p3 }} />
           <a
-            href="/cv.pdf"
-            download
+            href={site.cv[lang]}
+            download={`Fabio-Dias-CV-${lang.toUpperCase()}.pdf`}
             className="inline-flex items-center gap-3 border-[1.5px] border-ink px-5.5 py-3.5 mt-6 text-[14px] uppercase tracking-wider transition-colors duration-250 hover:bg-ink hover:text-bg"
             style={{ fontFamily: "var(--font-archivo)" }}
           >
