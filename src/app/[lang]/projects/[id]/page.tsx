@@ -30,7 +30,6 @@ import ProjectGallery from "./_components/ProjectGallery";
 // import ProjectBand from "./_components/ProjectBand";
 import ProjectBuild from "./_components/ProjectBuild";
 import ProjectStack from "./_components/ProjectStack";
-import ProjectResults from "./_components/ProjectResults";
 import ProjectPrevNext from "./_components/ProjectPrevNext";
 import ProjectLangToggle from "./_components/ProjectLangToggle";
 import Footer from "../../_components/Footer";
@@ -76,7 +75,6 @@ export default async function ProjectPage({
         {/* <ProjectBand src={project.band} /> */}
         <ProjectBuild content={c} dict={d.build} />
         <ProjectStack project={project} dict={d.stack} />
-        <ProjectResults project={project} dict={d.highlights} />
         <ProjectPrevNext prev={prev} next={next} lang={lang} dict={d.nav} />
       </main>
       <Footer dict={dict.footer} />

@@ -31,7 +31,6 @@ export interface ProjectData {
   titleAccent: string;
   chips: string[];
   qf: ProjectQuickFacts;
-  results: Array<{ big: string; label: string }>;
   live: string;
   repo: string;
   // 7 slots fixos no mosaico — ordem importa. Ver ProjectGallery.tsx para span/ratio.
@@ -79,11 +78,6 @@ const projects: ProjectData[] = [
       pt: { duration: 'Em curso', type: 'Startup · Seed' },
       en: { duration: 'Ongoing', type: 'Startup · Seed' },
     },
-    results: [
-      { big: '150M+', label: 'READERS TAM' },
-      { big: '€18.2B', label: 'MARKET SIZE' },
-      { big: 'AI', label: 'NATIVE' },
-    ],
     live: '#',
     // repo: "github.com/fabioabd99/leafy", // repositório privado por agora
     repo: 'Privado',
@@ -200,11 +194,6 @@ const projects: ProjectData[] = [
       pt: { duration: 'Em curso', type: 'Startup · Pre-Seed' },
       en: { duration: 'Ongoing', type: 'Startup · Pre-Seed' },
     },
-    results: [
-      { big: '€2.1B', label: 'SAM IBERIA' },
-      { big: '340k', label: 'PROS ELEGÍVEIS' },
-      { big: '5min', label: 'TIME TO REVENUE' },
-    ],
     live: '#',
     // repo: "github.com/fabioabd99/venci", // repositório privado por agora
     repo: 'Privado',
