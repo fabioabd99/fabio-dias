@@ -7,7 +7,7 @@
   },
   "hero": {
     "status": "DISPONÍVEL P/ PROJETOS · 2026",
-    "location": "LISBOA, PT",
+    "location": "Oliveira do Hospital, PT",
     "line1": "Fábio",
     "line2": "Dias",
     "tagline": "Sou um <strong>Web Developer</strong> que constrói interfaces rápidas, acessíveis e memoráveis — pixel a pixel, linha a linha.",
@@ -17,7 +17,7 @@
     "label": "01 / SOBRE MIM",
     "title": "Código com",
     "titleAccent": "intenção.",
-    "p1": "Há <mark>3+ anos</mark> que transformo ideias em produtos web reais. Trabalho desde o backend (PHP, APIs REST) até ao frontend (React, Tailwind), com foco em performance e detalhe.",
+    "p1": "Há <mark>5+ anos</mark> que transformo ideias em produtos web reais. Trabalho desde o backend (PHP, APIs REST) até ao frontend (React, Tailwind), com foco em performance e detalhe.",
     "p2": "Acredito que um bom site não é só bonito — é rápido, acessível e útil. Cada decisão de design tem de servir o utilizador.",
     "p3": "Estou disponível agora para novas oportunidades em remoto. Se precisas de alguém que entrega, fala comigo.",
     "cv": "↓ DESCARREGAR CV",
@@ -30,8 +30,8 @@
     "available": "Disponível",
     "factValues": {
       "location": "Oliveira do Hospital, PT",
-      "experience": "3+ anos",
-      "projects": "20+",
+      "experience": "5+ anos",
+      "projects": "10+",
       "focus": "Full-Stack Web"
     }
   },

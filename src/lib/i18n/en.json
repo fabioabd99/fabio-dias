@@ -7,7 +7,7 @@
   },
   "hero": {
     "status": "AVAILABLE FOR PROJECTS · 2026",
-    "location": "LISBON, PT",
+    "location": "Oliveira do Hospital, PT",
     "line1": "Fábio",
     "line2": "Dias",
     "tagline": "I'm a <strong>Web Developer</strong> building fast, accessible, memorable interfaces — pixel by pixel, line by line.",
@@ -17,7 +17,7 @@
     "label": "01 / ABOUT",
     "title": "Code with",
     "titleAccent": "intent.",
-    "p1": "For <mark>3+ years</mark> I have turned ideas into real web products. From backend (PHP, REST APIs) to frontend (React, Tailwind), with focus on performance and detail.",
+    "p1": "For <mark>5+ years</mark> I have turned ideas into real web products. From backend (PHP, REST APIs) to frontend (React, Tailwind), with focus on performance and detail.",
     "p2": "A good website isn't just pretty — it's fast, accessible and useful. Every design decision must serve the user.",
     "p3": "I'm available now for remote opportunities. If you need someone who delivers, let's talk.",
     "cv": "↓ DOWNLOAD CV",
@@ -30,8 +30,8 @@
     "available": "Available",
     "factValues": {
       "location": "Oliveira do Hospital, PT",
-      "experience": "3+ years",
-      "projects": "20+",
+      "experience": "5+ years",
+      "projects": "10+",
       "focus": "Full-Stack Web"
     }
   },
